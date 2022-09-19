@@ -7,22 +7,27 @@ var isFlipped=false;
 $(function (){
     start();
    // $('.buttonNew').click(newFiguresPHP);
+   $('.buttonNew').click(newFigures);
     $('.buttonFlip').click(flipBoard);
-   // setInterval('showFiguresPhp()',1000);
+    //setInterval('showFiguresPhp()',1000);
 });
 
 function start() {
     map = new Array(64);
     addSquares();
     showFigures('rnbqkbnrpppppppp11111111111111111111111111111111PPPPPPPPRNBQKBNR');
-   //  showFiguresPhp();
+   // showFiguresPhp();
+   showDate();
 }
 
 function flipBoard(){
     isFlipped=!isFlipped;
     start();
 }
+function newFigures(){
+    showFigures('rnbqkbnrpppppppp11111111111111111111111111111111PPPPPPPPRNBQKBNR');
 
+}
 function setDraggable(){
 
     $('.figure').draggable({
@@ -106,6 +111,20 @@ function showFiguresPhp(){
     if(isDragged)return;
     $.get('chess.php?getFigures',showFigures);
 };
+
+function showDate(){
+    let date=new Date();
+    let curentdate=date.getDate()+'. '+date.getMonth()+'. '+date.getFullYear() ;
+    console.log(curentdate);
+    let p=document.getElementById('date');
+    p.innerHTML=`${curentdate}`;
+    
+   
+   
+
+}
+
+
 
 function moveFigurePhp(frCoord,toCoord){
     $.get('chess.php?moveFigure' +

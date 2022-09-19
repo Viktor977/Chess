@@ -33,15 +33,15 @@ class Board
         $figures[$frCoord]='1';
         $figures[$toCoord]=$frFigure;
         $this->storage->save($figures);
-        return$this->storage->load();
+        return $this->storage->load();
 
 
     }
     function canMove($frFigure,$toFigure){
         if(strpos('Kk',$toFigure)!==false)return false;
-        $frFigure=$this->getFigureColor($frFigure);
+        $frColor=$this->getFigureColor($frFigure);
         $toColor=$this->getFigureColor($toFigure);
-        return $frFigure!=$toColor;
+        return $frColor!=$toColor;
     }
     function getFigureColor($figure){
         if(strpos('RNBQKP',$figure)!==false)return'white';
